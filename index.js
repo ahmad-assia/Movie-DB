@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3002
+const port = 3001
 app.get('/', (req, res) => {
     res.send('ok')
  
@@ -130,6 +130,31 @@ app.get('/movies/read/by-date', (req, res) => {
             status:404, error:true, message:`the movie ${id} does not exist`
            })
                  });
+                 //step8
+              app.get ('/movies/add',(req,res)=>{
+                   let title = req.query.title
+                   let year = req.query.year
+                   let rating = req.query.rating
+                   
+              if (title ==="undefined" ||year ==="undefined" || year.toString().length!=4|| isNaN(year))
+    
+              res.send({
+                status:403, error:true, message:'you cannot create a movie without providing a title and a year'
+              })
+              else if(rating==="undefined"|| rating =='')
+
+              {
+                let length= 4;
+                movies.push({title:title,year:year,rating:length })
+                res.send(movies)
+              }
+              movies.push({title:title,year:year,rating:rating })
+              res.send({status:200,data:movies})
+              })
+              
+             
+                 
+           
                   
 
 app.listen(port, () => console.log(`the server started at http://localhost:${port} `
