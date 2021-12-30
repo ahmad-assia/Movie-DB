@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 3000
 app.get('/', (req, res) => {
     res.send('ok')
  
@@ -24,6 +24,7 @@ app.get("/hello/:id", (req, res) => {
       Id: req.params.id,
     });
   });
+
   app.get("/hello", (req, res) => {
     res.send({
       status: 200,
@@ -48,6 +49,33 @@ app.get("/hello/:id", (req, res) => {
       message: "you have to provide a search",
     });
   });
+  const movies = [
+    { title: "Jaws", year: 1975, rating: 8 },
+    { title: "Avatar", year: 2009, rating: 7.8 },
+    { title: "Brazil", year: 1985, rating: 8 },
+    { title: "الإرهاب والكباب", year: 1992, rating: 6.2 },
+  ];
   
+  // Add movie
+  
+  app.get("/movies/add", (req, res) => {});
+  
+  // Get movie
+  
+  app.get("/movies/get", (req, res) => {
+    res.send({
+      status: 200,
+      data: movies,
+    });
+  });
+  
+  // Edit movie
+  
+  app.get("/movies/edit", (req, res) => {});
+  
+  // Delete movie
+  
+  app.get("/movies/delete", (req, res) => {});
+
 app.listen(port, () => console.log(`the server started at http://localhost:${port} `
 ))
