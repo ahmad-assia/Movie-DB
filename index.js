@@ -116,5 +116,21 @@ app.get('/movies/read/by-date', (req, res) => {
                       
                     )
              });
+             //movie id 
+              app.get('/movies/read/id/:id', (req, res) => {
+                let id = req.params.id
+             if (id <=movies.length && id >0)
+             
+             res.send({
+                status:200,
+               data:movies[id-1]
+           })
+           else
+           res.send ({
+            status:404, error:true, message:`the movie ${id} does not exist`
+           })
+                 });
+                  
+
 app.listen(port, () => console.log(`the server started at http://localhost:${port} `
 ))
