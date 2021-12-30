@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3002
 app.get('/', (req, res) => {
     res.send('ok')
  
@@ -49,6 +49,7 @@ app.get("/hello/:id", (req, res) => {
       message: "you have to provide a search",
     });
   });
+
   const movies = [
     { title: "Jaws", year: 1975, rating: 8 },
     { title: "Avatar", year: 2009, rating: 7.8 },
@@ -77,5 +78,43 @@ app.get("/hello/:id", (req, res) => {
   
   app.get("/movies/delete", (req, res) => {});
 
+//date
+app.get('/movies/read/by-date', (req, res) => {
+           
+    let dateRate = movies.sort((a, b) => {
+        return a.year - b.year;
+    }) ;
+            res.send({
+                 status:200,
+                data:dateRate
+            }
+              
+            )
+     });
+     app.get('/movies/read/by-rating', (req, res) => {
+           
+        let dateRate = movies.sort((a, b) => {
+            return a.rating - b.rating;
+        }) ;
+                res.send({
+                     status:200,
+                    data:dateRate
+                }
+                  
+                )
+         });
+     
+         app.get('/movies/read/by-title', (req, res) => {
+           
+            let dateRate = movies.sort((a, b) => {
+                return a.title - b.title;
+            }) ;
+                    res.send({
+                         status:200,
+                        data:dateRate
+                    }
+                      
+                    )
+             });
 app.listen(port, () => console.log(`the server started at http://localhost:${port} `
 ))
